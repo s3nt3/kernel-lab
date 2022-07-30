@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+    kernel-lab:
+        build:
+          context: .
+        image: kernel-lab:0x00_basic
+        container_name: kernel-lab-0x00_basic
+        volumes:
+          - ./lab:/opt/lab
+        privileged: true
+        tty: true
