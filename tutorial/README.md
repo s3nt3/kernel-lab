@@ -1,4 +1,4 @@
-# Basic
+# How to use this tutorial?
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ $ tmux new -s lab
 ```
 And you can get more tips on using tmux from: [Getting Started](https://github.com/tmux/tmux/wiki/Getting-Started).
 
-## Kernel compiling
+## Compiling kernel
 
 Now that things are ready, we can start downloading the source code for a particular version of the kernel and compiling it. First, we can use `script/kernel.sh` to download the kernel source.
 
