@@ -1,7 +1,7 @@
 #!/bin/bash
 
 KERNEL_VERSION=5.10.133
-KERNEL_DIR=/opt/lab/kernel/v${KERNEL_VERSION:0:1}.x/linux-${KERNEL_VERSION}
+KERNEL_DIR=/opt/lab/.cache/kernel/v${KERNEL_VERSION:0:1}.x/linux-${KERNEL_VERSION}
 
 qemu-system-x86_64 -s -S \
     -smp 2,cores=2,threads=1 -m 2048 \

@@ -3,7 +3,7 @@
 DEBIAN_ARCH=amd64
 DEBIAN_DIST=bullseye
 
-TARGET_DIR=/opt/lab/.debian/${DEBIAN_DIST}/${DEBIAN_ARCH}
+TARGET_DIR=/opt/lab/.cache/debian/${DEBIAN_DIST}/${DEBIAN_ARCH}
 
 qemu-img create /opt/lab/debian.img 64G && mkfs.ext4 /opt/lab/debian.img
 
