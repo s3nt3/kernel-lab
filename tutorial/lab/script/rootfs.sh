@@ -13,7 +13,7 @@ if [ -d ${TARGET_DIR} ]
 then
     cp -r ${TARGET_DIR}/* /opt/lab/.rootfs
 else
-    qemu-debootstrap --arch ${DEBIAN_ARCH} ${DEBIAN_DIST} ${TARGET_DIR} https://mirrors.tuna.tsinghua.edu.cn/debian/
+    qemu-debootstrap --arch ${DEBIAN_ARCH} ${DEBIAN_DIST} ${TARGET_DIR} https://deb.debian.org/debian
     cp -r ${TARGET_DIR}/* /opt/lab/.rootfs
 fi
 
