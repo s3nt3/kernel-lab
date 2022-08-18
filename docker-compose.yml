@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    kernel-lab:
+        build:
+          context: .
+        image: kernel-lab:22.04
+        container_name: kernel-lab
+        volumes:
+          - ~/.cache/kernel-lab:/root/.cache/kernel-lab
+          - ./lab:/root/kernel-lab
+        privileged: true
+        tty: true

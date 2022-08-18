@@ -1,8 +1,8 @@
 #!/bin/bash
 
-KERNEL_VERSION=5.10.133
+KERNEL_VERSION=${KERNEL_VERSION:-5.10.133}
 
-TARGET_DIR=/opt/lab/.cache/kernel/v${KERNEL_VERSION:0:1}.x
+TARGET_DIR=/root/.cache/kernel-lab/kernel/v${KERNEL_VERSION:0:1}.x
 
 mkdir -p ${TARGET_DIR}
 
