@@ -1,10 +1,10 @@
-# KERNEL-LAB
+# Kernel Lab
 
 ## Prerequisites
 
 Please make sure you have docker and docker-compose installed correctly. If you haven't, you can refer to [Install Docker Engine](https://docs.docker.com/engine/install/) and [Install Docker Compose](https://docs.docker.com/compose/install/) to learn how to install them.
 
-## Getting your own kernel hacking environment
+## Getting Your Own Kernel Hacking Environment
 
 I have prepared a Dockerfile that you can use it to build an image that will provide the environment needed to compile and debug the kernel. So, first of all, you need to build a docker image as follows:
 ```
@@ -23,7 +23,7 @@ $ tmux new -s lab
 ```
 And you can get more tips on using tmux from: [Getting Started](https://github.com/tmux/tmux/wiki/Getting-Started).
 
-## Compiling kernel
+## Compiling Kernel
 
 Now that you've got a interactive shell in the kernel-lab container, in which a lot of tools and dependecies for kernel hacking has been installed. Let's have a try to download the kernel source code for a specific version and compile it. You can just use the script `/root/kernel-lab/script/kernel.sh`, it will help you to get all things done.
 
@@ -78,7 +78,7 @@ Finally, let's start compiling the kernel:
 $ make -j $(nproc)
 ```
 
-## Building the root filesystem 
+## Building the Root Filesystem 
 
 It is not enough to only have a kernel, we also need a root filesystem to interact with our kernel as a user space. In most of the tutorials, they build the root filesystem based on busybox. But this solution has some problems, for example, it can be very difficult to install new tools (you need to rebuild the image file and reboot the system to remount it). So in this tutorial, we will try another solution, using `debootstrap` to build a debian-like root filesystem. It will be very powerful, just like you are using a debian distribution, and you can easily install a new tool by using the apt command.
 
@@ -119,7 +119,7 @@ passwd: password updated successfully
 [*] Generate /root/.cache/kernel-lab/debian/bullseye/amd64/debian.qcow2.
 ```
 
-## Starting your virtual machine
+## Starting Your Virtual Machine
 
 Now you can start your virtual machine by running `/root/kernel-lab/script/debian.sh`.
 
@@ -210,4 +210,4 @@ $ echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 $ systemctl restart sshd
 ```
 
-Congratulations, if you have arrived here, it means that you have successfully booted your virtaul machine. All the preparations are done, let's start our kernel hacking journey.
+Congratulations, if you have arrived here, it means that you have successfully booted your virtaul machine. All the preparations are done, let's [start](https://github.com/s3nt3/kernel-lab/tree/main/lab/tutorial/0x00_basic) our kernel hacking journey.

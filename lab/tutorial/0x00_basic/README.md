@@ -4,15 +4,15 @@ Before we start to play a kernel pwn challenge, I'd like to introduce some infor
 
 Since there are lots of great resources available online for free(for example, [The Linux Kernel Module Programming Guide](https://sysprog21.github.io/lkmpg/) and [Linux Kernel Teaching](https://linux-kernel-labs.github.io/refs/heads/master/), which are available online for free, and the most incredible thing is that all the samples in these tutorial work well with the latest 5.x kernel), in this tutorial, I will just briefly introduce the basic concepts and steps to read, compile and run some simple kernel module samples. For more details, please read the references given in every topic.
 
-## Starting a new virtual machine
+## Starting a New Virtual Machine
 
 You may have already started a virtual machine using `/root/kernel-lab/script/debian.sh` in the previous tutorial. However, it is recommended that you shutdown it and start a new virtual machine using `/root/kernel-lab/tutorial/0x00_basic/run.sh` for learning current chapter. Since in different chapter different boot parameters may required, so there is a `run.sh` script with specific boot parameters for each chapter. In brief, please remember to restart a new virtual machine when you begin to learn a new chapter.
 
-## What is a kernel module?
+## What is a Kernel Module?
 
 Kernel modules are pieces of code that can be loaded and unloaded into the kernel upon demand. You can see: [What Is A Kernel Module](https://sysprog21.github.io/lkmpg/#what-is-a-kernel-module) for more details.
 
-## How to build a kernel module
+## How to Build a Kernel Module
 
 You can execute the `make` command in the `/root/kernel-lab/tutorial/0x00_basic/src` directory to build all the sample code in this chapter:
 
@@ -50,7 +50,7 @@ clean:
 
 The sample Makefile shows above is aimed at building out-of-tree (or “external”) modules. Due to `kbuild` has hided most of the complexity, so one only has to type “make” to build the module. `kbuild` is the build system used by the Linux kernel. Modules must use `kbuild` to stay compatible with changes in the build infrastructure. Functionality for building modules both in-tree and out-of-tree is provided. The method for building either is similar, and all modules are initially developed and built out-of-tree.
 
-### Options
+### options
 
 When we write our own Makefile, there are two important options to specify. One is `-C` and the other is `M`, and the command format is shown as follows:
 
@@ -66,7 +66,7 @@ The option `-C` specifies the directory where the kernel source is located. `mak
 
 The options `M` informs `kbuild` that an external module is being built. The value given to option `M` is the absolute path of the directory where the external module is located.
 
-### Target
+### target
 
 When building an external module, only a subset of the `make` targets are available.
 
@@ -88,7 +88,7 @@ Remove all generated files in the module directory only.
 
 List the available targets for external modules.
 
-### Goal definitions
+### goal definitions
 
 One more important thing is to specify which module we need to build. Here we will use something called goal definitions(see [goal definitions](https://docs.kernel.org/kbuild/makefiles.html#goal-definitions) for details), an example is as follow:
 
@@ -137,7 +137,7 @@ module_exit(cleanup_hello);
 
 Kernel modules must have at least two functions: a "start" (initialization) function called `init_module()` which is called when the module is inserted into the kernel, and an "end" (cleanup) function called `cleanup_module()` which is called just before it is removed from the kernel.
 
-### How to insert or remove a module
+### insert or remove a module
 
 You can use the `insmod` command to insert a kernel module, for example:
 
