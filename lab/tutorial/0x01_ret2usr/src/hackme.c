@@ -24,9 +24,9 @@ static ssize_t hackme_read(struct file *filp, /* see include/linux/fs.h   */
                            size_t length, /* length of the buffer     */
                            loff_t *offset)
 {
-    char tmp[0x80] = {0};
+    char tmp[0x80];
 
-    strcpy(hackme_buf, tmp);
+    memcpy(hackme_buf, tmp, length);
 
     if (length > 0x1000) {
         pr_alert("Buffer overflow detected (%d < %lu)!\n", 0x1000, length);
@@ -43,7 +43,7 @@ static ssize_t hackme_read(struct file *filp, /* see include/linux/fs.h   */
 static ssize_t hackme_write(struct file *filp, const char __user *buff,
                             size_t length, loff_t *off)
 {
-    char tmp[0x80] = {0};
+    char tmp[0x80];
 
     if (length > 0x1000) {
         pr_alert("Buffer overflow detected (%d < %lu)!\n", 0x1000, length);
@@ -53,7 +53,8 @@ static ssize_t hackme_write(struct file *filp, const char __user *buff,
     if (copy_from_user(hackme_buf, buff, length) != 0) {
         return -EINVAL;
     } else {
-        strcpy(tmp, hackme_buf);
+        memcpy(tmp, hackme_buf, length);
+        pr_alert("Copy to stack success: tmp[0] = %c", tmp[0]);
 
         return length;
     }
