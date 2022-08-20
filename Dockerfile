@@ -24,22 +24,21 @@ WORKDIR /opt/pwndbg
 RUN sed -i "s/^git submodule/#git submodule/" ./setup.sh && \
     DEBIAN_FRONTEND=noninteractive ./setup.sh
 
-RUN echo "source /pwndbg/gdbinit.py" >> ~/.gdbinit.py && \
-    echo "PYTHON_MINOR=$(python3 -c "import sys;print(sys.version_info.minor)")" >> /root/.bashrc && \
-    echo "PYTHON_PATH=\"/usr/local/lib/python3.${PYTHON_MINOR}/dist-packages/bin\"" >> /root/.bashrc && \
-    echo "export PATH=$PATH:$PYTHON_PATH" >> /root/.bashrc
-
 RUN git submodule update --init --recursive
 
-# RUN bash -c "$(wget https://gef.blah.cat/sh -O -)"
+RUN echo "source /pwndbg/gdbinit.py" >> ~/.gdbinit.py && \
+    echo "PYTHON_MINOR=\$(python3 -c \"import sys;print(sys.version_info.minor)\")" >> /root/.bashrc && \
+    echo "PYTHON_PATH=\"/usr/local/lib/python3.\${PYTHON_MINOR}/dist-packages/bin\"" >> /root/.bashrc && \
+    echo "export PATH=\$PATH:\$PYTHON_PATH" >> /root/.bashrc
+
 RUN echo "set auto-load safe-path /root/.cache/kernel-lab/kernel" >> /root/.gdbinit
 
 RUN apt-get install -y wget telnet openssh-client
 RUN apt-get install -y neovim python3-neovim
 
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install ROPgadget
 RUN python3 -m pip install pwntools
+RUN python3 -m pip install ROPgadget
 
 WORKDIR /root/kernel-lab
 
