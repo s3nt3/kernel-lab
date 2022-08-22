@@ -14,7 +14,7 @@ $ docker-compose build
 After the image build process finished, you can run the following command to start a container and execute an interactive shell in it to access your own kernel hacking environment:
 ```
 $ docker-compose up -d
-$ docker-compose exec kernel-lab /bin/bash
+$ docker-compose exec kernel-lab /bin/zsh
 ```
 
 Since we will be handling multiple tasks in the container, such as compiling the kernel, starting the virtual machine, debugging the kernel, reading the code, etc. Therefore, it is very helpful to use tmux to manage tasks under multiple screens. You can use the following command to start a tmux session:
