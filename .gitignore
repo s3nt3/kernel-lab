@@ -61,3 +61,6 @@ dkms.conf
 
 # gdb
 .gdb_history
+
+# pwn
+.gadgets/
