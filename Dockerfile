@@ -46,6 +46,7 @@ RUN python3 -m pip install ropper
 
 # Install oh-my-zsh
 RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+RUN chsh -s "$(which zsh)"
 
 WORKDIR /root/kernel-lab
 
