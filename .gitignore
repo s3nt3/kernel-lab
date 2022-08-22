@@ -58,3 +58,6 @@ dkms.conf
 # kernel/debian rootfs directory
 .kernel
 .debian
+
+# gdb
+.gdb_history
