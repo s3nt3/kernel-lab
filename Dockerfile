@@ -7,7 +7,9 @@ RUN apt-get install -y qemu-system qemu-user-static debootstrap
 RUN apt-get install -y build-essential gdb python3 python3-pip
 RUN apt-get install -y libncurses5-dev flex bison libelf-dev libssl-dev bc
 RUN apt-get install -y file cscope exuberant-ctags
-RUN apt-get install -y tmux locales
+RUN apt-get install -y tmux locales man-db
+
+RUN yes | unminimize
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
@@ -37,9 +39,6 @@ RUN apt-get install -y zsh git wget
 RUN bash -c "$(wget https://gef.blah.cat/sh -O -)"
 RUN echo "set auto-load safe-path /root/.cache/kernel-lab/kernel" >> /root/.gdbinit
 
-RUN apt-get install -y telnet openssh-client
-RUN apt-get install -y neovim python3-neovim
-
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install pwntools
 RUN python3 -m pip install ropper
@@ -47,6 +46,11 @@ RUN python3 -m pip install ropper
 # Install oh-my-zsh
 RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 RUN chsh -s "$(which zsh)"
+RUN sed -i "s/robbyrussell/ys/g" /root/.zshrc
+
+RUN apt-get install -y neovim python3-neovim
+RUN apt-get install -y telnet openssh-client
+RUN apt-get install -y tree
 
 WORKDIR /root/kernel-lab
 
